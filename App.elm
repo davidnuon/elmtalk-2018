@@ -1,42 +1,15 @@
 module App exposing (..)
 
 import Html exposing (Html, button, div, text, program, Attribute)
-import Html.Attributes exposing (attribute)
 import Html.Events exposing (on, onClick, keyCode, onInput)
 import Array
 import Json.Decode as Json
 import Keyboard
-
-type alias Slides msg =
-  { 
-    children : List (Html.Html msg),
-    classes: List (String)
-  }
+import Slides exposing (slides)
 
 onKeyDown : (Int -> msg) -> Attribute msg
 onKeyDown tagger =
   on "keydown" (Json.map tagger keyCode)
-
-slides : List (Slides msg)
-slides = [
-    {
-        children = [
-            div [] [text "Slide 1"]
-        ],
-        classes = []
-    },
-    {
-        children = [
-            div [] [text "Slide 2"]
-        ],
-        classes = []
-    },
-        {
-        children = [
-            div [] [text "Slide 3"]
-        ],
-        classes = []
-    }]
 
 type alias Model = Int
 
