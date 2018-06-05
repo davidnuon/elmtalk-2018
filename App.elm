@@ -2,6 +2,7 @@ module App exposing (..)
 
 import Html exposing (Html, button, div, text, program)
 import Html.Events exposing (onClick)
+import Array
 
 type alias Slides msg =
   { 
@@ -42,12 +43,21 @@ type Msg = Increment | Decrement
 -- VIEW
 view : Model -> Html Msg
 view model =
-    div []
-        [ 
-            button [ onClick Increment ] [ text "+"]
-        ,   model |> toString  |> text 
-        ,   button [ onClick Decrement ] [ text "-"]
-        ]
+    let
+        slide = Array.fromList slides |> Array.get model
+        slideContent = case slide of
+            Nothing ->
+                []    
+            Just slide ->
+                slide.children
+    in
+        div []
+            [ 
+                button [ onClick Decrement ] [ text "-"]
+            ,   model |> toString  |> text 
+            ,   button [ onClick Increment ] [ text "+"]
+            ,   div [] slideContent  
+            ]
 
 -- UPDATE
 update : Msg -> Model -> (Model, Cmd msg)
