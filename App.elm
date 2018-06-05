@@ -5,7 +5,8 @@ import Html.Events exposing (on, onClick, keyCode, onInput)
 import Array
 import Json.Decode as Json
 import Keyboard
-import Slides exposing (slides)
+import Slides exposing (slides, emptySlide)
+import Markdown 
 
 onKeyDown : (Int -> msg) -> Attribute msg
 onKeyDown tagger =
@@ -30,16 +31,16 @@ view model =
         slide = Array.fromList slides |> Array.get model
         slideContent = case slide of
             Nothing ->
-                []    
+                text ""   
             Just slide ->
-                slide.children
+                Markdown.toHtml [] slide.children
     in
         div []
             [ 
                 button [ onClick Decrement ] [ text "-"]
             ,   model |> toString  |> text 
             ,   button [ onClick Increment ] [ text "+"]
-            ,   div [] slideContent  
+            ,   slideContent  
             ]
 
 -- UPDATE

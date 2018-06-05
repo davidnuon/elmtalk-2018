@@ -1,48 +1,26 @@
 module Slides exposing (..)
 
 import Html exposing (Html, button, div, text, program, Attribute)
+import SlidesContent exposing (..)
 
-type alias Slides msg =
+type alias Slide =
   { 
-    children : List (Html.Html msg),
+    children : String,
     classes: List (String)
   }
 
-slides : List (Slides msg)
-slides = [
+emptySlide : Slide
+emptySlide = 
     {
-        children = [
-            div [] [text "Slide 1"]
-        ],
+        children = "",
         classes = []
-    },
+    }
+
+markdownToSlide markdown = 
     {
-        children = [
-            div [] [text "Slide 2"]
-        ],
+        children = markdown,
         classes = []
-    },
-    {
-        children = [
-            div [] [text "Slide 4"]
-        ],
-        classes = []
-    },
-    {
-        children = [
-            div [] [text "Slide 5"]
-        ],
-        classes = []
-    },
-    {
-        children = [
-            div [] [text "Slide 6"]
-        ],
-        classes = []
-    },
-    {
-        children = [
-            div [] [text "Slide 3"]
-        ],
-        classes = []
-    }]
+    }
+
+slides : List (Slide)
+slides = List.map markdownToSlide slideMarkdown
