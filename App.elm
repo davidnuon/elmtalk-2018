@@ -37,10 +37,7 @@ view model =
     in
         div []
             [ 
-                button [ onClick Decrement ] [ text "-"]
-            ,   model |> toString  |> text 
-            ,   button [ onClick Increment ] [ text "+"]
-            ,   slideContent  
+               slideContent  
             ]
 
 -- UPDATE
