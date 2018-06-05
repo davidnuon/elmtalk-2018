@@ -3,13 +3,38 @@ module App exposing (..)
 import Html exposing (Html, button, div, text, program)
 import Html.Events exposing (onClick)
 
+type alias Slides msg =
+  { 
+    children : List (Html.Html msg),
+    classes: List (String)
+  }
+
+slides : List (Slides msg)
+slides = [
+    {
+        children = [
+            div [] [text "Slide 1"]
+        ],
+        classes = []
+    },
+    {
+        children = [
+            div [] [text "Slide 2"]
+        ],
+        classes = []
+    },
+        {
+        children = [
+            div [] [text "Slide 3"]
+        ],
+        classes = []
+    }]
+
 type alias Model = Int
-model : Int
-model = 0
 
 init : ( Model, Cmd Msg )
 init =
-    ( 1, Cmd.none )
+    ( 0, Cmd.none )
 
 -- MESSAGES
 type Msg = Increment | Decrement
@@ -29,9 +54,9 @@ update : Msg -> Model -> (Model, Cmd msg)
 update msg model =
     case msg of
         Increment -> 
-            (model + 1, Cmd.none)
+            ((model + 1) % List.length slides, Cmd.none)
         Decrement -> 
-            (model - 1, Cmd.none)
+            (max 0 (model - 1), Cmd.none)
 
 -- SUBSCRIPTIONS
 subscriptions : Model -> Sub Msg
