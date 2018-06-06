@@ -10,8 +10,10 @@ module.exports = {
   devServer: {
     inline: true,
     port: 9001,
+    contentBase: '/',
+
     output: {
-       path: path.resolve(__dirname, 'build'),
+       path: path.resolve(__dirname, 'serve'),
        filename: 'bundle.js'
     }
   },

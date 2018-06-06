@@ -1,11 +1,11 @@
-module App exposing (..)
+module Main exposing (..)
 
 import Html exposing (Html, button, div, text, program, Attribute)
 import Html.Events exposing (on, onClick, keyCode, onInput)
 import Array
 import Json.Decode as Json
 import Keyboard
-import Slides exposing (slides, emptySlide)
+import Slides exposing (slides)
 import Markdown 
 
 onKeyDown : (Int -> msg) -> Attribute msg
@@ -28,12 +28,12 @@ type Msg
 view : Model -> Html Msg
 view model =
     let
-        slide = Array.fromList slides |> Array.get model
+        slide = slides |> Array.get model
         slideContent = case slide of
             Nothing ->
                 text ""   
             Just slide ->
-                Markdown.toHtml [] slide.children
+                Markdown.toHtml [] slide
     in
         div []
             [ 
@@ -44,7 +44,7 @@ view model =
 update : Msg -> Model -> (Model, Cmd msg)
 update msg model =
     let
-        nextSlide = ((model + 1) % List.length slides, Cmd.none)
+        nextSlide = ((model + 1) % Array.length slides, Cmd.none)
         prevSlide = (max 0 (model - 1), Cmd.none)
     in
         case msg of
