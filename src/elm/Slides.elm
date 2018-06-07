@@ -5,7 +5,9 @@ slides : Array (String)
 slides = Array.fromList
     [
     """
-# Slide 1
+# Intro to Elm
+
+## Or, functional programming &hearts; frontend
     """,
     """
 # Slide 2

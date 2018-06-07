@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Html exposing (Html, button, div, text, program, Attribute)
 import Html.Events exposing (on, onClick, keyCode, onInput)
+import Html.Attributes exposing (class)
 import Array
 import Json.Decode as Json
 import Keyboard
@@ -33,12 +34,9 @@ view model =
             Nothing ->
                 text ""   
             Just slide ->
-                Markdown.toHtml [] slide
+                Markdown.toHtml [class "slide"] slide
     in
-        div []
-            [ 
-               slideContent  
-            ]
+        div [] [slideContent]
 
 -- UPDATE
 update : Msg -> Model -> (Model, Cmd msg)
