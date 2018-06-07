@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "webpack-serve --watch ./webpack.config.js --port 9001 --hot"
+    "serve": "webpack-serve --watch ./webpack.config.js --port 9001 --hot --open"
   },
   "author": "",
   "license": "ISC",

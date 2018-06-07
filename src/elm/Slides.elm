@@ -10,21 +10,21 @@ slides = Array.fromList
 ## Or, functional programming &hearts; frontend
     """,
     """
-# Slide 2
+# Why elm?
     """,
     """
-# Slide 3
+# What does elm look like?
     """,
     """
-# Slide 4
+# An example app
     """,
     """
-# Slide 5
+# You've seen this before
     """,
     """
-# Slide 6
+# Tooling
     """,
     """
-# Slide 7
+# Demo
     """
     ]
