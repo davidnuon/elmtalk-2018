@@ -18,6 +18,27 @@ It provides a reactive rendering model that makes it much easier to reason about
 
     """,
     """
+# Why elm?
+You get powerful functional features like:
+  - partial application, 
+  - higher-ordered functions
+  - abstract data types 
+
+but in an easy to use package.
+
+  If you're familiar with Redux or Vuex, you'll be right at home with elm.
+    """,
+    """
+# What does elm look like?
+
+<pre>
+import Html exposing (..)
+
+main : Html msg
+main = text Hello World
+</pre>
+    """,
+    """
 <pre>
 // Imperative Javascript
 var newFruits = [];
@@ -70,16 +91,6 @@ main =
 ## Usability and simplicity are one 
 ## of the main design goals of Elm.
 You get the power of a language like Haskell with the usability of React or Vue.
-    """,
-    """
-# What does elm look like?
-
-<pre>
-import Html exposing (..)
-
-main : Html msg
-main = text Hello World
-</pre>
     """,
     """
 <pre>
