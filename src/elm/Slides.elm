@@ -98,11 +98,7 @@ import Html exposing (..)
 
 main : Html msg
 main = 
-   let 
-     formatListitem x = text ("I am number " ++ x)
-     listItems = List.map formatListitem (List.map toString [1,2,3,4,5])
-   in
-     ul [] 
+     ul [] List.map (\\x -&gt; "I am number " ++ x) (List.map toString [1,2,3,4,5])
 </pre>
     """,
     """
@@ -112,12 +108,25 @@ import Html exposing (..)
 main : Html msg
 main = 
    let 
-     formatListitem x = "I am number " ++ x |> text
+     formatListitem x = text ("I am number " ++ x)
+     listItems = List.map formatListitem (List.map toString [1,2,3,4,5])
+   in
+     ul [] listItems
+</pre>
+    """,
+    """
+<pre>
+import Html exposing (..)
+
+main : Html msg
+main = 
+   let 
+     formatListitem x = x ++ "I am number " |> text
      listItems = [1,2,3,4,5] 
         |> List.map toString 
         |> List.map formatListitem
    in
-     ul [] 
+     ul [] listItems
 </pre>
     """,
     """
