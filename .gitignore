@@ -73,3 +73,4 @@ elm-stuff
 repl-temp-*
 
 dist
+*.swp
