@@ -23,6 +23,12 @@ body {
     width: 100%;
 
     display: grid;
+    
+    code, pre {
+	text-align:left;
+	background: #eee;
+	padding:1em;
+    }
 
     & > div {
         height: 100%;

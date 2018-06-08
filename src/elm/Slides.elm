@@ -19,7 +19,7 @@ It provides a reactive rendering model that makes it much easier to reason about
     """,
     """
 <pre>
-// Imperitive Javascript
+// Imperative Javascript
 var newFruits = [];
 var fruits = ["banana", "apple", "list"];
 for (var i = 1; fruits.length; i++) {
@@ -38,8 +38,38 @@ List.map ((++) "I am the ") ["banana", "apple", "list"]
 </pre>
     """,
     """
+<pre>
+// React JSX
+class ContainerCompontent extends Component { 
+   function render () { return &lt;div&gt;{this.props.children}&lt;/div&gt;; }
+}
+&lt;ContainerCompontent&gt;
+  &lt;p&gt;This is some text. I'm living inside a React component.&lt;/p&gt;
+&lt;/ContainerComponent&gt;
+
+// Realized ReactDOM
+ReactDOM.render(
+  React.createElement(ContainerCompontent, {}, 
+     React.createElement('p', {}, 
+     React.createElement(null, "This is some text. I'm living inside a React component."))),
+  document.getElementById('root')
+);
+</pre>
+    """,
+    """
+<pre>
+-- Elm
+container children = div [] children
+main = 
+   container [
+       p [] [text "This is some text. I'm living inside an Elm functon."]
+   ]
+</pre>
+    """,
+    """
 ## Usability and simplicity are one 
 ## of the main design goals of Elm.
+You get the power of a language like Haskell with the usability of React or Vue.
     """,
     """
 # What does elm look like?
