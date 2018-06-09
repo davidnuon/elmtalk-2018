@@ -8,6 +8,7 @@ import Json.Decode as Json
 import Keyboard
 import Slides exposing (slides)
 import Markdown
+import Messages exposing (..)
 
 
 onKeyDown : (Int -> msg) -> Attribute msg
@@ -16,24 +17,16 @@ onKeyDown tagger =
 
 
 type alias Model =
-    Int
+    {
+        currentSlide : Int,
+        counter: Int
+    }
 
+initState = { currentSlide = 0, counter = 0 }
 
 init : ( Model, Cmd Msg )
 init =
-    ( 0, Cmd.none )
-
-
-
--- MESSAGES
-
-
-type Msg
-    = Increment
-    | Decrement
-    | KeyMsg Keyboard.KeyCode
-
-
+    ( initState, Cmd.none )
 
 -- VIEW
 
@@ -42,7 +35,7 @@ view : Model -> Html Msg
 view model =
     let
         slide =
-            slides |> Array.get model
+            slides |> Array.get model.currentSlide
 
         slideContent =
             case slide of
@@ -63,27 +56,27 @@ update : Msg -> Model -> ( Model, Cmd msg )
 update msg model =
     let
         nextSlide =
-            ( (model + 1) % Array.length slides, Cmd.none )
+            { model | currentSlide = (model.currentSlide + 1) % Array.length slides }
 
         prevSlide =
-            ( max 0 (model - 1), Cmd.none )
+            { model | currentSlide = max 0 (model.currentSlide - 1) }
     in
         case msg of
             KeyMsg key ->
                 if key == 39 then
                     -- right arrow
-                    nextSlide
+                    ( nextSlide, Cmd.none )
                 else if key == 37 then
                     -- left arrow
-                    prevSlide
+                    ( prevSlide, Cmd.none )
                 else
                     ( model, Cmd.none )
 
             Increment ->
-                nextSlide
+                ( { model | counter = model.counter + 1 }, Cmd.none )
 
             Decrement ->
-                prevSlide
+                ( { model | counter = model.counter - 1 }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg

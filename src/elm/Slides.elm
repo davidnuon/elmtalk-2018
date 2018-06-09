@@ -1,12 +1,8 @@
 module Slides exposing (..)
 
 import Array exposing (Array)
-import Markdown
-import Html.Attributes exposing (class)
-
-
-markdownSlide slide model =
-    Markdown.toHtml [ class "slide" ] slide
+import SlidesHelpers exposing (..)
+import SlidesDemos exposing (..)
 
 slides =
     Array.fromList
@@ -139,6 +135,7 @@ main =
         , markdownSlide """
 # An example app
     """
+    , counterDemo
         , markdownSlide """
 # You've seen this before
     """
