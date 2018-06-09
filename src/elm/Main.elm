@@ -7,58 +7,84 @@ import Array
 import Json.Decode as Json
 import Keyboard
 import Slides exposing (slides)
-import Markdown 
+import Markdown
+
 
 onKeyDown : (Int -> msg) -> Attribute msg
 onKeyDown tagger =
-  on "keydown" (Json.map tagger keyCode)
+    on "keydown" (Json.map tagger keyCode)
 
-type alias Model = Int
+
+type alias Model =
+    Int
+
 
 init : ( Model, Cmd Msg )
 init =
     ( 0, Cmd.none )
 
+
+
 -- MESSAGES
-type Msg 
+
+
+type Msg
     = Increment
     | Decrement
     | KeyMsg Keyboard.KeyCode
 
+
+
 -- VIEW
+
+
 view : Model -> Html Msg
 view model =
     let
-        slide = slides |> Array.get model
-        slideContent = case slide of
-            Nothing ->
-                text ""   
-            Just slide ->
-                Markdown.toHtml [class "slide"] slide
+        slide =
+            slides |> Array.get model
+
+        slideContent =
+            case slide of
+                Nothing ->
+                    (\_ -> text "")
+
+                Just slide ->
+                    slide
     in
-        div [] [slideContent]
+        div [] [ slideContent model ]
+
+
 
 -- UPDATE
-update : Msg -> Model -> (Model, Cmd msg)
+
+
+update : Msg -> Model -> ( Model, Cmd msg )
 update msg model =
     let
-        nextSlide = ((model + 1) % Array.length slides, Cmd.none)
-        prevSlide = (max 0 (model - 1), Cmd.none)
+        nextSlide =
+            ( (model + 1) % Array.length slides, Cmd.none )
+
+        prevSlide =
+            ( max 0 (model - 1), Cmd.none )
     in
         case msg of
-            KeyMsg key -> 
-                if key == 39 then -- right arrow
+            KeyMsg key ->
+                if key == 39 then
+                    -- right arrow
                     nextSlide
-
-                else if key == 37 then -- left arrow
+                else if key == 37 then
+                    -- left arrow
                     prevSlide
-
                 else
-                    (model, Cmd.none)
-            Increment -> 
+                    ( model, Cmd.none )
+
+            Increment ->
                 nextSlide
-            Decrement -> 
+
+            Decrement ->
                 prevSlide
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =

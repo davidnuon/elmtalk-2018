@@ -1,17 +1,21 @@
 module Slides exposing (..)
 
 import Array exposing (Array)
+import Markdown
+import Html.Attributes exposing (class)
 
 
-slides : Array String
+markdownSlide slide model =
+    Markdown.toHtml [ class "slide" ] slide
+
 slides =
     Array.fromList
-        [ """
+        [ markdownSlide """
 # Intro to Elm
 
 ## Or, functional programming &hearts; frontend
     """
-        , """
+        , markdownSlide """
 # Why elm?
 
 ## Elm is a functional language that compiles to Javascript.
@@ -19,7 +23,7 @@ slides =
 It provides a reactive rendering model that makes it much easier to reason about your code.
 
     """
-        , """
+        , markdownSlide """
 # Why elm?
 You get powerful functional features like:
   - partial application,
@@ -30,7 +34,7 @@ but in an easy to use package.
 
   If you're familiar with Redux or Vuex, you'll be right at home with elm.
     """
-        , """
+        , markdownSlide """
 # What does elm look like?
 
 <pre>
@@ -40,7 +44,7 @@ main : Html msg
 main = text Hello World
 </pre>
     """
-        , """
+        , markdownSlide """
 <pre>
 // Imperative Javascript
 var newFruits = [];
@@ -60,7 +64,7 @@ List.map (\\e -> "I am the " ++ e) ["banana", "apple", "list"]
 List.map ((++) "I am the ") ["banana", "apple", "list"]
 </pre>
     """
-        , """
+        , markdownSlide """
 <pre>
 // React JSX
 class ContainerCompontent extends Component {
@@ -79,7 +83,7 @@ ReactDOM.render(
 );
 </pre>
     """
-        , """
+        , markdownSlide """
 <pre>
 -- Elm
 container children = div [] children
@@ -89,12 +93,12 @@ main =
    ]
 </pre>
     """
-        , """
+        , markdownSlide """
 ## Usability and simplicity are one
 ## of the main design goals of Elm.
 You get the power of a language like Haskell with the usability of React or Vue.
     """
-        , """
+        , markdownSlide """
 <pre>
 import Html exposing (..)
 
@@ -104,7 +108,7 @@ main =
          (List.map toString [1,2,3,4,5])
 </pre>
     """
-        , """
+        , markdownSlide """
 <pre>
 import Html exposing (..)
 
@@ -117,7 +121,7 @@ main =
      ul [] listItems
 </pre>
     """
-        , """
+        , markdownSlide """
 <pre>
 import Html exposing (..)
 
@@ -132,16 +136,16 @@ main =
      ul [] listItems
 </pre>
     """
-        , """
+        , markdownSlide """
 # An example app
     """
-        , """
+        , markdownSlide """
 # You've seen this before
     """
-        , """
+        , markdownSlide """
 # Tooling
     """
-        , """
+        , markdownSlide """
 # Demo
     """
         ]
