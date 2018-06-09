@@ -1,7 +1,7 @@
 {
-  "name": "giphy-engine",
+  "name": "elmtalk-2018",
   "version": "1.0.0",
-  "description": "Elm demo that is a giphy search engine",
+  "description": "Intro to Elm presentation written in Elm.",
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
