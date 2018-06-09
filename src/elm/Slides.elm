@@ -85,7 +85,7 @@ ReactDOM.render(
 container children = div [] children
 main =
    container [
-       p [] [text "This is some text. I'm living inside an Elm functon."]
+       p [] [text "I'm living inside an Elm functon."]
    ]
 </pre>
     """
@@ -112,7 +112,8 @@ main : Html msg
 main =
    let
      formatListitem x = text ("I am number " ++ x)
-     listItems = List.map formatListitem (List.map toString [1,2,3,4,5])
+     listItems = List.map formatListitem 
+                    (List.map toString [1,2,3,4,5])
    in
      ul [] listItems
 </pre>
