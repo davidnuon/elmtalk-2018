@@ -4,6 +4,7 @@ import Array exposing (Array)
 import SlidesHelpers exposing (..)
 import SlidesDemos exposing (..)
 
+
 slides =
     Array.fromList
         [ markdownSlide """
@@ -51,7 +52,7 @@ for (var i = 1; fruits.length; i++) {
 
 // Functional Javascript
 ["banana", "apple", "list"]
-   .map ( (e) => "I am the ")
+   .map ( (e) => "I am the " + e)
 
 -- Elm
 List.map (\\e -> "I am the " ++ e) ["banana", "apple", "list"]
@@ -112,7 +113,7 @@ main : Html msg
 main =
    let
      formatListitem x = text ("I am number " ++ x)
-     listItems = List.map formatListitem 
+     listItems = List.map formatListitem
                     (List.map toString [1,2,3,4,5])
    in
      ul [] listItems
@@ -133,8 +134,8 @@ main =
      ul [] listItems
 </pre>
     """
-    ,mouseMovementDemo
-    , counterDemo
+        , mouseMovementDemo
+        , counterDemo
         , markdownSlide """
 # You've seen this before
 
