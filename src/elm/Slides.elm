@@ -139,7 +139,7 @@ main =
 # You've seen this before
 
 - Elm: Messages, Update, Model, View,
-- Vue(x): Actions, Mutate, State, View,
+- Vuex: Actions, Mutate, State, View,
 - Redux: Actions, Reducers, Store, View
     """
         , markdownSlide """
