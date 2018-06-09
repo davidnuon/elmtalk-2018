@@ -37,7 +37,7 @@ but in an easy to use package.
 import Html exposing (..)
 
 main : Html msg
-main = text Hello World
+main = text "Hello World"
 </pre>
     """
         , markdownSlide """
@@ -134,13 +134,16 @@ main =
     """
         , markdownSlide """
 # An example app
+
+_(this presentation is an Elm app!)_
     """
     , counterDemo
         , markdownSlide """
 # You've seen this before
-    """
-        , markdownSlide """
-# Tooling
+
+- Elm: Messages, Update, Model, View,
+- Vue(x): Actions, Mutate, State, View,
+- Redux: Actions, Reducers, Store, View
     """
         , markdownSlide """
 # Demo
