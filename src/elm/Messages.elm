@@ -6,3 +6,4 @@ type Msg
     = Increment
     | Decrement
     | KeyMsg Keyboard.KeyCode
+    | MouseMovement Int Int

@@ -9,6 +9,7 @@ import Keyboard
 import Slides exposing (slides)
 import Markdown
 import Messages exposing (..)
+import Mouse
 
 
 onKeyDown : (Int -> msg) -> Attribute msg
@@ -19,10 +20,12 @@ onKeyDown tagger =
 type alias Model =
     {
         currentSlide : Int,
-        counter: Int
+        counter: Int,
+        mouseX: Int, 
+        mouseY: Int
     }
 
-initState = { currentSlide = 0, counter = 0 }
+initState = { currentSlide = 0, counter = 0, mouseX = 0, mouseY = 0 }
 
 init : ( Model, Cmd Msg )
 init =
@@ -51,7 +54,6 @@ view model =
 
 -- UPDATE
 
-
 update : Msg -> Model -> ( Model, Cmd msg )
 update msg model =
     let
@@ -77,12 +79,18 @@ update msg model =
 
             Decrement ->
                 ( { model | counter = model.counter - 1 }, Cmd.none )
+                
+            MouseMovement x y-> 
+                ( { model | mouseX = x, mouseY = y }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Keyboard.downs KeyMsg ]
+        [ 
+            Keyboard.downs KeyMsg,
+            Mouse.moves (\{x, y} -> MouseMovement x y)
+        ]
 
 
 main : Program Never Model Msg

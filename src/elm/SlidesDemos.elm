@@ -4,9 +4,24 @@ import Html exposing (..)
 import Html.Attributes exposing (class, style)
 import Messages 
 import Html.Events exposing (onClick)
+import Markdown
 
 demoSize html = 
     div [class "demo-size"] [html]
+
+mouseMovementDemo model =
+    let
+        mouseX = model.mouseX |> toString |> text
+        mouseY = model.mouseY |> toString |> text
+    in
+        div []
+            [              
+                Markdown.toHtml [] """# An example app
+
+_(this presentation is an Elm app!)_
+                    """,
+                pre [] [ text "{ mouseX: ", mouseX, text " mouseY: ", mouseY, text " }"]
+            ]
 
 counterDemo model = 
     let
