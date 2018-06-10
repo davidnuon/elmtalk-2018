@@ -25,7 +25,8 @@ It provides a reactive rendering model that makes it much easier to reason about
 You get powerful functional features like:
   - partial application,
   - higher-ordered functions
-  - abstract data types
+  - algebraic data types
+  - controlled side-effects
 
 but in an easy to use package.
 
@@ -101,7 +102,7 @@ import Html exposing (..)
 
 main : Html msg
 main =
-     ul [] List.map (\\x -&gt; "I am number " ++ x)
+     ul [] List.map (\\x -&gt; li [] ["I am number " ++ x])
          (List.map toString [1,2,3,4,5])
 </pre>
     """
@@ -112,7 +113,7 @@ import Html exposing (..)
 main : Html msg
 main =
    let
-     formatListitem x = text ("I am number " ++ x)
+     formatListitem x = li [] [text ("I am number " ++ x)]
      listItems = List.map formatListitem
                     (List.map toString [1,2,3,4,5])
    in
@@ -126,7 +127,7 @@ import Html exposing (..)
 main : Html msg
 main =
    let
-     formatListitem x = x ++ "I am number " |> text
+     formatListitem x = li [] [x ++ "I am number "] |> text
      listItems = [1,2,3,4,5]
         |> List.map toString
         |> List.map formatListitem
