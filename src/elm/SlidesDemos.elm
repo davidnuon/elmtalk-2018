@@ -57,7 +57,9 @@ view model = div [] [
 
 -- For external data (e.g WebSockets, clock ticks)
 subscriptions = Sub.none
-main = {
+
+main : Program Never Model Msg
+main = program {
     init = init , view = view ,
     update = update , subscriptions = subscriptions
 }
